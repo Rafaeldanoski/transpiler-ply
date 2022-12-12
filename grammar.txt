@@ -1,0 +1,82 @@
+statement_list       -> statement_list statement
+                      | statement
+
+statement            -> turtle_instruction
+                      | if_statement
+                      | while_statement
+                      | variable_declaration
+                      | procedure_definition
+                      | procedure_call
+                      | print_statement
+
+turtle_instruction   -> 'SETXY' expression ',' expression
+                      | 'FORWARD' expression
+                      | 'BACKWARD' expression
+                      | 'RIGHT' expression
+                      | 'LEFT' expression
+                      | 'HEADING' expression
+                      | 'PENUP'
+                      | 'PENDOWN'
+                      | 'HOME'
+                      | 'WIPECLEAN'
+                      | 'RESET'
+                      | 'XCOR'
+                      | 'YCOR'
+                      | 'TYPEIN' expression
+
+if_statement         -> IF '(' condition ')' 'THEN' statement_list 'END'
+                      | IF '(' condition ')' 'THEN' statement_list 'ELSE' statement_list 'END'
+
+while_statement      -> WHILE '(' condition ')' statement_list 'END'
+
+variable_declaration -> 'ID' ASSIGN expression
+
+procedure_definition -> TO 'ID' parameter_list statement_list 'END'
+
+parameter_list       -> parameter_list ',' parameter
+                      | parameter
+
+parameter            -> name
+                      | empty
+
+procedure_call       -> 'ID' expression_list
+
+expression_list      -> expression_list ',' expression
+                      | expression
+                      | empty
+
+print_statement      -> 'PRINT' word
+                      | 'PRINT' expression
+
+expression           -> INT
+                      | FLOAT
+                      | expression '*' expression
+                      | expression '/' expression
+                      | expression '+' expression
+                      | expression '-' expression
+                      | expression '^' expression
+                      | 'SQRT' expression
+                      | '-' expression
+                      | '(' expression ')'
+                      | 'RANDOM' expression
+                      | name
+
+condition            -> bool_expression
+                      | bool_expression 'OR' condition
+                      | bool_expression 'AND' condition
+                      | 'NOT' condition
+                      | 'true'
+                      | 'false'
+
+bool_expression      -> expression '>' expression
+                      | expression '<' expression
+                      | expression '>=' expression
+                      | expression '<=' expression
+                      | expression '==' expression
+                      | expression '!=' expression
+
+word                 -> 'STRING'
+
+name                 -> ':' 'ID'
+
+empty                -> <empty>
