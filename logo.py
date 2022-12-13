@@ -267,8 +267,6 @@ def p_write_statement(p):
     '''
     write_statement : WRITE word
                     | WRITE expression
-                    | WRITE expression word
-                    | WRITE word expression
     '''
     if len(p) == 3:
         p[0] = [p[2], 'CALL ' + reserved[p[1]]]
@@ -372,9 +370,9 @@ parser = yacc.yacc()
 def main():
     try:
         logo_program = '''
-        a = 8 
+        a = 10.40 - 5.60
         b = 5 ^ (2 + 1)
-        c = 4 * (:a + :b) 
+        c = 4 * (:a + :b)
         write :c
         '''
     except EOFError:
