@@ -375,7 +375,7 @@ def main():
         a = 8 
         b = 5 ^ (2 + 1)
         c = 4 * (:a + :b) 
-        write :c \n
+        write :c
         '''
     except EOFError:
         print('EOF Error')
